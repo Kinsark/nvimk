@@ -17,10 +17,25 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.opt.shortmess:append 'I'
+
 require 'options'
 require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
+
+-- Set filetype for Helm templates since it is not in templates/ folder by default.
+vim.filetype.add {
+  extension = {
+    yaml = function(_, bufnr)
+      local content = vim.api.nvim_buf_get_lines(bufnr, 0, 40, false)
+      for _, line in ipairs(content) do
+        if line:find '{{.*}}' or line:find '.Values' or line:find '.Chart' then return 'helm' end
+      end
+      return 'yaml'
+    end,
+  },
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -20,7 +20,9 @@ return {
       format_on_save = function(bufnr)
         -- You can specify filetypes to autoformat on save here:
         local enabled_filetypes = {
-          -- lua = true,
+          lua = true,
+          go = true,
+          yaml = true,
           -- python = true,
         }
         if enabled_filetypes[vim.bo[bufnr].filetype] then
@@ -39,7 +41,7 @@ return {
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
