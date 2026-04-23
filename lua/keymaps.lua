@@ -23,14 +23,6 @@ vim.diagnostic.config {
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -46,18 +38,19 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+-- Center the screen after scrolling with <C-d>/<C-u>
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down/up and center the screen' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll down/up and center the screen' })
 
--- NOTE: Custom commands
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+-- Navigate buffers, but already exist with [b and ]b, so you can use those if you prefer
+vim.keymap.set('n', 'H', ':bprev<CR>', { desc = 'Go to the [H]previous/[L]next buffer' })
+vim.keymap.set('n', 'L', ':bnext<CR>', { desc = 'Go to the [H]previous/[L]next buffer' })
 
-vim.keymap.set('n', 'H', ':bprev<CR>')
-vim.keymap.set('n', 'L', ':bnext<CR>')
+vim.keymap.set('n', '<C-a>', ':%bd|e#||bd#<CR>', { desc = 'Close all buffers except the current one' })
+
+-- Remap [ and ] to é and è for AZERTY
+vim.keymap.set({ 'n', 'x', 'o' }, 'é', '[', { remap = true })
+vim.keymap.set({ 'n', 'x', 'o' }, 'è', ']', { remap = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

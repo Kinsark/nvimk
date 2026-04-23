@@ -1,5 +1,5 @@
+-- NOTE: Custom personnal health check information
 local check_external_reqs = function()
-  -- Basic utils: `git`, `make`, `unzip`
   for _, exe in ipairs { 'git', 'make', 'unzip', 'rg' } do
     local is_executable = vim.fn.executable(exe) == 1
     if is_executable then

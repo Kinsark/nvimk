@@ -11,16 +11,28 @@ return {
         desc = '[G]it Fugitive',
       },
       {
-        'gu',
-        '<cmd>diffget //2<CR>',
+        '<leader>gc',
+        '<cmd>Gdiffsplit!<CR>',
         mode = 'n',
-        desc = '[G]et [U]pstream left //2',
+        desc = '[G]it diff [C]onflict split',
       },
       {
-        'gh',
+        '<leader>gv',
+        '<cmd>Gvdiff<CR>',
+        mode = 'n',
+        desc = '[G]it [V]ertical Diff',
+      },
+      {
+        '<leader>gh',
+        '<cmd>diffget //2<CR>',
+        mode = 'n',
+        desc = '[G]et upstream left //2',
+      },
+      {
+        '<leader>gl',
         '<cmd>diffget //3<CR>',
         mode = 'n',
-        desc = '[G]it [H]er right //3',
+        desc = '[G]it her right //3',
       },
     },
     config = function()
